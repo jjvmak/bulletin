@@ -22,7 +22,5 @@ server.listen(port, hostname, () => {
 });
 
 app.post('/sightings', (req, res) => {
-	  req.body.id = (sightings.length + 1).toString();
-	  sightings.push(req.body);
-	  res.json(req.body);
+	 console.log(req.body.id);
 	});
