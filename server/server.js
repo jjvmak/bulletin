@@ -1,26 +1,24 @@
-//test
-const http = require('http');
-
-const hostname = 'localhost';
-const port = 8080;
-
 const app = require('express')();
 const cors = require('cors')
 const bodyParser = require('body-parser');
+
+//Enable CORS
 app.use(cors());
 
-
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+//Enable CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.use(bodyParser.json());
+
+app.post('/test', (req, res) => {
+	console.log(req.body.id );
 });
 
-app.post('/sightings', (req, res) => {
-	 console.log(req.body.id);
-	});
+const port = process.env.PORT ? process.env.PORT : 8080;
+const server = app.listen(port, () => {
+    console.log("Server listening  port %s", port);
+});
