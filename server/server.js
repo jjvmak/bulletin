@@ -22,3 +22,14 @@ const port = process.env.PORT ? process.env.PORT : 8080;
 const server = app.listen(port, () => {
     console.log("Server listening  port %s", port);
 });
+
+var mongo = require('mongodb');
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:8081/db";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  db.close();
+})
