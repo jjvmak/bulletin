@@ -1,4 +1,6 @@
-# ServerTest
+# bulletin
+
+sandbox project for playing around with Angular 4, Node.js and MongoDB
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
