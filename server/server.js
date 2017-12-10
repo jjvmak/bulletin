@@ -21,7 +21,8 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-app.get('/test', (req, res) => {
-	  
-	  
+app.post('/sightings', (req, res) => {
+	  req.body.id = (sightings.length + 1).toString();
+	  sightings.push(req.body);
+	  res.json(req.body);
 	});
