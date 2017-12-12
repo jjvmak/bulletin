@@ -34,9 +34,13 @@ var MongoClient = require('mongodb').MongoClient;
 var url = manager.dburl;
 
 MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  console.log("Database created!");
-  db.close();
-})
+	if (err) throw err;
+	  var msg = { message: "HALOO SAATANA" };
+	  db.collection("testi").insertOne(msg, function(err, res) {
+	    if (err) throw err;
+	    console.log("1 document inserted");
+	    db.close();
+	  });
+});
 
 
