@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
       id: 'asd'
       
     }
-    this.http.post('http://localhost:8080/test', body).subscribe(); 
+    // this.http.post('http://localhost:8080/test', body).subscribe(); 
     
   }
 

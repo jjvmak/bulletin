@@ -5,7 +5,10 @@ let manager = new Manager();
 const app = require('express')();
 const cors = require('cors')
 const bodyParser = require('body-parser');
+var mongo = require('mongodb');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = manager.dburl;
 
 //Enable CORS
 app.use(cors());
@@ -20,7 +23,17 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.post('/test', (req, res) => {
-	console.log(req.body.id );
+	console.log(req.body.message );
+	MongoClient.connect(url, function(err, db) {
+		if (err) throw err;
+		  var msg = { message: req.body.message };
+		  db.collection("testi").insertOne(msg, function(err, res) {
+		    if (err) throw err;
+		    console.log(msg);
+		    db.close();
+		  });
+	});
+	
 });
 
 const port = process.env.PORT ? process.env.PORT : 8080;
@@ -28,19 +41,16 @@ const server = app.listen(port, () => {
     console.log("Server listening  port %s", port);
 });
 
-var mongo = require('mongodb');
 
-var MongoClient = require('mongodb').MongoClient;
-var url = manager.dburl;
 
 MongoClient.connect(url, function(err, db) {
-	if (err) throw err;
-	  var msg = { message: "HALOO SAATANA" };
-	  db.collection("testi").insertOne(msg, function(err, res) {
-	    if (err) throw err;
-	    console.log("1 document inserted");
-	    db.close();
-	  });
+//	if (err) throw err;
+//	  var msg = { message: "HALOO SAATANA" };
+//	  db.collection("testi").insertOne(msg, function(err, res) {
+//	    if (err) throw err;
+//	    console.log("1 document inserted");
+//	    db.close();
+//	  });
 });
 
 
