@@ -4,17 +4,25 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { BoardComponent } from './board/board.component';
 
+const appRoutes: Routes = [
+  { path: 'input', component: InputComponent },
+  { path: 'board', component: BoardComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot( appRoutes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
