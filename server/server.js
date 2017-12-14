@@ -23,13 +23,14 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.post('/test', (req, res) => {
-	console.log(req.body.message );
+	// console.log(req.body.header);
+	// console.log(req.body.description);
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
-		  var msg = { message: req.body.message };
+		  var msg = {header: req.body.header, description: req.body.description};
 		  db.collection("testi").insertOne(msg, function(err, res) {
 		    if (err) throw err;
-		    console.log(msg);
+		    // console.log(msg);
 		    db.close();
 		  });
 	});
@@ -41,7 +42,7 @@ app.get('/messages', (req, res) => {
 		  if (err) throw err;
 		  db.collection("testi").find({}).toArray(function(err, result) {
 		    if (err) throw err;
-		    console.log(result);
+		   // console.log(result);
 		    res.json(result);
 		    db.close();
 		  });
@@ -55,7 +56,7 @@ const server = app.listen(port, () => {
 
 
 
-MongoClient.connect(url, function(err, db) {
+//MongoClient.connect(url, function(err, db) {
 //	if (err) throw err;
 //	  var msg = { message: "HALOO SAATANA" };
 //	  db.collection("testi").insertOne(msg, function(err, res) {
@@ -63,6 +64,6 @@ MongoClient.connect(url, function(err, db) {
 //	    console.log("1 document inserted");
 //	    db.close();
 //	  });
-});
+//});
 
 

@@ -3,6 +3,10 @@
 <div class="container-fluid">
 	
 	<form (ngSubmit)="onSubmit(message)" #message="ngForm">
+       <div class="form-group">
+        <label for="header">Header</label>
+        <input type="text" class="form-control" name="header" ngModel required>
+      </div>
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" name="description" ngModel required>

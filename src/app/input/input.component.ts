@@ -31,7 +31,8 @@ export class InputComponent implements OnInit {
   onSubmit() {
     console.log(this.messageForm.value.description);
     const body = {
-      message: this.messageForm.value.description
+      header: this.messageForm.value.header,
+      description: this.messageForm.value.description
       
     }
     this.http.post('http://localhost:8080/test', body).subscribe(); 

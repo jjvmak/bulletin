@@ -1,6 +1,6 @@
-
 <div class="container-fluid">
-	<div class="message" *ngFor="let message of messages">
-		<p>{{message}}</p>
+	<div class="well" *ngFor="let message of messages">
+		<h3>{{message.getHeader}}</h3>
+		<p>{{message.getDescription}}</p> 
 	</div>
 </div>
