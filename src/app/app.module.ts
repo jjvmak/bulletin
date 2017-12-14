@@ -10,6 +10,7 @@ import { BoardComponent } from './board/board.component';
 const appRoutes: Routes = [
   { path: 'input', component: InputComponent },
   { path: 'board', component: BoardComponent },
+  { path: '', component: BoardComponent}
 ];
 
 @NgModule({
