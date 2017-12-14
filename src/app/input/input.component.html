@@ -1,5 +1,12 @@
+
+
 <div class="container-fluid">
-    <form (ngSubmit)="onSubmit(message)" #message="ngForm">
+	
+	<div class="message" *ngFor="let message of messages">
+		<p>{{message}}</p>
+	</div>
+
+	<form (ngSubmit)="onSubmit(message)" #message="ngForm">
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" name="description" ngModel required>

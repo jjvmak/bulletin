@@ -36,6 +36,18 @@ app.post('/test', (req, res) => {
 	
 });
 
+app.get('/messages', (req, res) => {
+	MongoClient.connect(url, function(err, db) {
+		  if (err) throw err;
+		  db.collection("testi").find({}).toArray(function(err, result) {
+		    if (err) throw err;
+		    console.log(result);
+		    res.json(result);
+		    db.close();
+		  });
+		});  
+	});
+
 const port = process.env.PORT ? process.env.PORT : 8080;
 const server = app.listen(port, () => {
     console.log("Server listening  port %s", port);
