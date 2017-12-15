@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { AbstractControl, ValidatorFn, NgForm, FormGroup, Validators, FormControl, NgModel} from '@angular/forms';
 import { FormsModule } from '@angular/forms';

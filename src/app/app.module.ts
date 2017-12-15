@@ -2,10 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 import { InputComponent } from './input/input.component';
+import { FormsModule, NgModel } from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
+
+import {ReactiveFormsModule} from '@angular/forms';
 const appRoutes: Routes = [
   { path: 'input', component: InputComponent },
   { path: 'board', component: BoardComponent },
@@ -22,6 +26,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgModel,
     RouterModule.forRoot( appRoutes, { enableTracing: true })
   ],
   providers: [],
