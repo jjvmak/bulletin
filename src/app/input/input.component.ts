@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  
   @ViewChild('message') messageForm: NgForm;
   ln: number;
   messages: string [] = [];
