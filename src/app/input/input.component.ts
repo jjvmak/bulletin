@@ -19,23 +19,25 @@ export class InputComponent implements OnInit {
       .subscribe(resp => {
         this.ln = Object.keys(resp.body).length;
 
-        for (let i = 0; i < this.ln; i++) {      
+        for (let i = 0; i < this.ln; i++) {
           this.messages.push(resp.body[i].message);
           console.log(this.messages[i]);
         }
 
       });
   }
-  
+
   onSubmit() {
     console.log(this.messageForm.value.description);
     const body = {
       header: this.messageForm.value.header,
-      description: this.messageForm.value.description
-      
+      description: this.messageForm.value.description,
+      date: this.messageForm.value.date,
+      time: this.messageForm.value.time,
+
     }
-    this.http.post('http://localhost:8080/test', body).subscribe(); 
-    
+    this.http.post('http://localhost:8080/test', body).subscribe();
+
     this.messageForm.reset();
   }
 }

@@ -21,9 +21,12 @@ export class BoardComponent implements OnInit {
       .subscribe(resp => {
         this.ln = Object.keys(resp.body).length;
 
-        for (let i = 0; i < this.ln; i++) { 
-               
-          this.tmp = new Message(resp.body[i].header, resp.body[i].description);     
+        for (let i = 0; i < this.ln; i++) {
+
+          this.tmp = new Message(resp.body[i].header,
+                                 resp.body[i].description,
+                                 resp.body[i].date,
+                                 resp.body[i].time);
           this.messages.push(this.tmp);
         }
 
@@ -33,15 +36,23 @@ export class BoardComponent implements OnInit {
 }
 
 export class Message {
-  
-  constructor (private header: string, private description: string) {}
-  
+
+  constructor (private header: string, private description: string, private date: string, private time: string) {}
+
   get getHeader(): string {
     return this.header;
   }
-  
+
    get getDescription(): string {
     return this.description;
   }
-  
+
+  get getDate(): string {
+    return this.date;
+  }
+
+  get getTime(): string {
+    return this.time;
+  }
+
 }

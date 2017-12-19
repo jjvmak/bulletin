@@ -1,6 +1,7 @@
 <div class="container-fluid">
 	<div class="well" *ngFor="let message of messages">
 		<h3>{{message.getHeader}}</h3>
-		<p>{{message.getDescription}}</p> 
+    <p>{{message.getDate}} klo {{message.getTime}}</p>
+		<p style="white-space: pre-line">{{message.getDescription}}</p>
 	</div>
 </div>

@@ -27,7 +27,10 @@ app.post('/test', (req, res) => {
 	// console.log(req.body.description);
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
-		  var msg = {header: req.body.header, description: req.body.description};
+		  var msg = {header: req.body.header, 
+		  			description: req.body.description,
+		  			date: req.body.date,
+		  			time: req.body.time};
 		  db.collection("testi").insertOne(msg, function(err, res) {
 		    if (err) throw err;
 		    // console.log(msg);
