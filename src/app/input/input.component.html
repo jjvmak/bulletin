@@ -3,23 +3,23 @@
 	<form (ngSubmit)="onSubmit(message)" #message="ngForm">
 		<div class="form-group">
 			  <label for="header">Header</label>
-		    <input type="text" class="form-control" name="header" ngModel required>
+		    <input type="text" class="form-control" name="header" id="header" ngModel required>
 		</div>
 		<div class="form-group">
 			<label for="date">Date</label>
-		    <input type="date" class="form-control" name="date" ngModel>
+		    <input type="date" class="form-control" name="date" id="date" ngModel>
 		</div>
 		<div class="form-group">
 			<label for="time">Time</label>
-		    <input type="time" class="form-control" name="time" ngModel>
+		    <input type="time" class="form-control" name="time" id="time" ngModel>
 		</div>
 		<div class="form-group">
 			<label for="description">Description</label>
-		    <textarea class="form-control" rows="8" name="description" ngModel required></textarea>
+		    <textarea class="form-control" rows="8" name="description" id="description" ngModel required></textarea>
 		</div>
 		<div class="form-group">
     		<label for="picture">Picture</label>
-    		<input type="file" name="picture"  #fileInput>
+    		<input type="file" name="picture" id="picture" #fileInput>
   		</div>
 		<button type="submit" class="btn btn-default" [disabled]="!message.valid">Submit</button>
 	</form>
