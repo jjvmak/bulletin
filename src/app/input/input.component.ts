@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
   @ViewChild('message') messageForm: NgForm;
- 
+  pic: string;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -29,5 +29,17 @@ export class InputComponent implements OnInit {
     this.http.post('http://localhost:8080/test', body).subscribe();
 
     this.messageForm.reset();
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.pic = reader.result;
+        console.log(this.pic)
+      };
+    }
   }
 }
