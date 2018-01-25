@@ -20,7 +20,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit:50000
+}));
 
 app.post('/test', (req, res) => {
 	// console.log(req.body.header);
@@ -30,7 +35,9 @@ app.post('/test', (req, res) => {
 		  var msg = {header: req.body.header, 
 		  			description: req.body.description,
 		  			date: req.body.date,
-		  			time: req.body.time};
+		  			time: req.body.time,
+		  			picture: req.body.picture
+		  		};
 		  db.collection("testi").insertOne(msg, function(err, res) {
 		    if (err) throw err;
 		    // console.log(msg);

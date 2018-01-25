@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class InputComponent implements OnInit {
   @ViewChild('message') messageForm: NgForm;
   pic: string;
+  reader = new FileReader();
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class InputComponent implements OnInit {
       description: this.messageForm.value.description,
       date: this.messageForm.value.date,
       time: this.messageForm.value.time,
+      picture: this.pic
 
     }
     this.http.post('http://localhost:8080/test', body).subscribe();
@@ -32,13 +34,12 @@ export class InputComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.pic = reader.result;
-        console.log(this.pic)
+      this.reader.readAsDataURL(file);
+      this.reader.onload = () => {
+        this.pic = this.reader.result;
+        // console.log(this.pic)
       };
     }
   }

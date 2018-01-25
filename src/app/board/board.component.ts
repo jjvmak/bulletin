@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-board',
@@ -13,8 +15,9 @@ export class BoardComponent implements OnInit {
   ln: number;
   messages: Message[] = [];
   tmp: Message;
+  im;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private  _DomSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.http.get('http://localhost:8080/messages', {observe: 'response'})
@@ -26,8 +29,10 @@ export class BoardComponent implements OnInit {
           this.tmp = new Message(resp.body[i].header,
                                  resp.body[i].description,
                                  resp.body[i].date,
-                                 resp.body[i].time);
+                                 resp.body[i].time,
+                                 resp.body[i].picture);
           this.messages.push(this.tmp);
+
         }
 
       });
@@ -36,8 +41,12 @@ export class BoardComponent implements OnInit {
 }
 
 export class Message {
+  decodedData;
 
-  constructor (private header: string, private description: string, private date: string, private time: string) {}
+  private sanitizer: DomSanitizer;
+  constructor (private header: string, private description: string, private date: string, private time: string, private picture: string) {
+    this.decodePicture();
+  }
 
   get getHeader(): string {
     return this.header;
@@ -54,5 +63,17 @@ export class Message {
   get getTime(): string {
     return this.time;
   }
+
+  get getPicture(): string {
+    return this.picture;
+  }
+
+  decodePicture() {
+    if (this.picture !== null) {
+      this.decodedData = this.getPicture;
+    }
+  }
+
+
 
 }
